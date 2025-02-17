@@ -37,7 +37,8 @@ sqlite3 database.db
 ```
 
 ## Final Project
-My final project is a [brief description of your project, e.g., a web app, game, AI model]. More details can be found in the `final_project/` directory.
+My final project can be found at [Class Compass](https://github.com/PauloVieira-1/class-compass). Class Compass is a web-based platform designed to help students track their coursework, deadlines, and progress in an intuitive and user-friendly way.
+My final project can be found at [Class Compass](https://github.com/PauloVieira-1/class-compass).
 
 ## Acknowledgments
 - Harvard University & CS50 Team
