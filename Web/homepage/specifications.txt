@@ -1,0 +1,21 @@
+HTML Tags:
+1) <p>
+2) <button>
+3) <ul>
+4) <li>
+5) <span>
+6) <div>
+7) <script>
+8) <a>
+9) <h1>
+10) <h2>
+
+CSS Properties:
+1) background-color
+2) color
+3) opacity
+4) width
+5) visibility
+
+Javascript:
+I used javascript to create a button that hides ands reveals an "about me" div on the home page. 

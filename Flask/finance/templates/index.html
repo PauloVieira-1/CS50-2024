@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+    {% block title %}
+        Stocks
+    {% endblock %}
+
+{% block main %}
+
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Name</th>
+                        <th>Shares</th>
+                        <th>Price</th>
+                        <th>Grand Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Loop through the database entries to display them in this table -->
+
+                    {% for stock in stocks %}
+                        <tr>
+                            <td>{{ stock.stock_symbol }}</td>
+                            <td>{{ stock.stock_name }}</td>
+                            <td>{{ stock.shares }}</td>
+                            <td>{{ stock.price | usd }}</td>
+                            <td>{{ (stock.value) | usd }}</td>
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>Overall stock value</td>
+                        <td colspan=3></td>
+                        <td>{{ "${:,.2f}".format(stocks|sum('value')) }}</td>
+                    </tr>
+                    <tr>
+                        <td>CASH</td>
+                        <td colspan=3></td>
+                        <td>{{ cash }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan=4></td>
+                        <td>{{ grand_total }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+
+{% endblock %}

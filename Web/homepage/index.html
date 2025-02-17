@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+        <link href="additional.css" rel="stylesheet">
+        <title>My Webpage</title>
+    </head>
+    <script>
+
+        let status = true
+
+        const isActive = () => {
+            if (status == false){
+                document.getElementById("button").style.visibility = "hidden";
+                status = true;
+            } else {
+                document.getElementById("button").style.visibility = "visible";
+                status = false;
+
+            }
+        }
+
+    </script>
+    <nav class="navbar navbar-expand-lg bg-dark shadow mb-5">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#" style='color: #cbd5e1'>About Myself</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav" style='color: white'>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" style='color: #cbd5e1' href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" style='color: #cbd5e1' href="hobbies.html">Hobbies</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" style='color: #cbd5e1' href="Career.html">Work</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" style='color: #cbd5e1' href="Languages.html">Languages</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <body style='background-color: #3f3f46'>
+        <div class='mt-3 mx-4' style='color: #cbd5e1'>
+            <h1 class='center'>Hi, my name is Paulo!</h1>
+            <p class='mt-4 center'>Welcome to my website! This platform is designed to share my work, ideas, and projects with you. Whether you're looking to learn more about my professional journey or explore my creative endeavors, I hope this site provides insight and inspiration.</p>
+        </div>
+        <div class='mx-5 center my-5'>
+            <button onClick = "isActive()" class='shadow rounded-5' style='background-color:#93c5fd'>
+                About me
+            </button>
+        </div>
+        <div id='button' class='box p-4 rounded-5 mb-4'>
+            <h1 class="center">About Me</h1>
+                <p class="center">Hello! I’m Paulo Vieira, originally from South Africa, now living in the Netherlands. My journey has taken me across different fields of creativity and technology, and I’m passionate about blending these two worlds to create something unique and meaningful.</p>
+
+                <h2 class="center">Programming</h2>
+                <p class="center">Ever since I wrote my first line of code, I’ve been fascinated by the power of programming to solve problems and build innovative solutions. I enjoy exploring various languages and technologies, constantly learning and experimenting to enhance my skills. Whether it’s developing applications, creating websites, or working on complex algorithms, programming allows me to express both creativity and logic in a way that’s endlessly fulfilling.</p>
+
+                <h2 class="center">Drawing</h2>
+                <p class="center">Art has always been a way for me to unwind and express my imagination visually. I love sketching ideas, characters, and scenes, and I often incorporate a range of styles and techniques. Drawing lets me explore different perspectives and bring stories to life through imagery, and I enjoy experimenting with both traditional and digital mediums.</p>
+
+                <h2 class="center">Reading</h2>
+                <p class="center">I’m an avid reader with a deep appreciation for literature. From fiction to non-fiction, I find inspiration in books that open my mind to new ideas and insights. Whether it’s exploring the worlds of science fiction, diving into philosophy, or keeping up with the latest in technology and innovation, reading is a constant source of knowledge and inspiration for me.</p>
+
+                <h2 class="center">Writing</h2>
+                <p class="center">Writing is another way I channel my thoughts and creativity. I love crafting stories, essays, and reflections that explore a wide range of topics. It’s a way for me to not only express myself but also to connect with others through words. Whether I’m working on short stories or personal reflections, writing offers me a space to explore ideas and communicate them in a meaningful way.</p>
+
+        </body>
+        </html>
+        </div>
+
+    </body>
+</html>

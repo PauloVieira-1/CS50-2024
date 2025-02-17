@@ -1,0 +1,11 @@
+sort1 uses: bubble sort
+
+How do you know?: The buble sort, as established in the lecture vidoes and notes, is the slowest and it is therefore resonable to assume the sort file with the highest runtime is the bubble sort algorithm
+
+sort2 uses: merge sort
+
+How do you know?: It had the lowest running time, meaning the numbers across all random texts were sorted the quickest of the different sorting algorithms.
+
+sort3 uses: selection sort
+
+How do you know?: The sort3 file was able to complete the sorting procedure at a rate between that of the bubble sort and merge sort files.

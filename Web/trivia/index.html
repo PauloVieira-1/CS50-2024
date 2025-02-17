@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+
+
+            const checkAnswer = (event) => {
+                let trigger = event.srcElement
+
+                if (trigger.innerHTML == "Mount Kilimanjaro"){
+                    trigger.style.backgroundColor = "green";
+                } else {
+                    trigger.style.backgroundColor = "red";
+                }
+            }
+
+
+            window.onload = () => {
+            const checkInput = () => {
+                let correct = 5;
+                let input = document.querySelector("Input").value;
+
+                if (input == 5) {
+                    console.log("correct");
+                    const node = document.createElement("h4")
+                    const textnode = document.createTextNode("Correct!")
+                    node.appendChild(textnode);
+                    document.getElementById("input-section").appendChild(node);
+                     } else {
+                    console.log(input);
+                    const node = document.createElement("h4")
+                    const textnode = document.createTextNode("Incorrect!")
+                    node.appendChild(textnode);
+                    document.getElementById("input-section").appendChild(node);
+                }
+            };
+
+            var subButton = document.getElementById('subButton');
+            subButton.addEventListener('click', checkInput);
+        };
+
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>What is the tallest mountain in Africa?</h3>
+                <button onClick = "checkAnswer(event)">Mount Kilimanjaro</button>
+                <button onCLick = "checkAnswer(event)">Mount Everest</button>
+                <button onCLick = "checkAnswer(event)">Table Mountain</button>
+            </div>
+
+            <div id = "input-section" class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>How many fingers am I holding up?</h3>
+                <input>
+                <button id='subButton'>Submit</button>
+            </div>
+        </div>
+    </body>
+</html>
