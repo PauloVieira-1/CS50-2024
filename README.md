@@ -12,13 +12,13 @@ CS50 is a course that covers fundamental computer science concepts and programmi
 
 ## Repository Structure
 ```
-CS50-2024/
+CS50-2024/ 
 │── C/                # C code from various problem sets 
 │── Flask/            # Flask projects from final week 
 │── Python/           # Similar to C code
 │── SQL/              # SQL assignment and challenge 
 │── Web/              # Javascript & HTML projects 
-│── README.md        # This file
+│── README.md         # This file
 ```
 
 ## Installation & Usage
