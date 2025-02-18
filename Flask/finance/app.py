@@ -41,35 +41,38 @@ def index():
 @app.route("/buy", methods=["GET", "POST"])
 @login_required
 def buy():
-    if request.method == "GET":
-        return render_template("buy.html")
-
-    elif request.method == "POST":
-        symbol = request.form.get("symbol")
+    """Buy shares of stock THIRD"""
+    if request.method == "POST":
+        symbol = request.form.get("symbol").upper()
         shares = request.form.get("shares")
+        if not symbol:
+            return apology("must provide symbol")
+        elif not shares or not shares.isdigit() or int(shares) <= 0:
+            return apology("must provide a positive integer number of shares")
 
-        if not symbol or not shares:
-            return apology("Please input a symbol", 403)
+        quote = lookup(symbol)
+        if quote is None:
+            return apology("symbol not found")
 
-        try:
-            shares = int(shares)
-            if shares <= 0:
-                return apology("Please enter a number greater than 0")
-        except:
-            return apology("Please enter a number")
+        price = quote["price"]
+        total_cost = int(shares) * price
+        cash = db.execute("SELECT cash FROM users WHERE id = :user_id", user_id=session["user_id"])[0]["cash"]
 
+        if cash < total_cost:
+            return apology("not enough cash")
 
-        information = lookup(symbol)
+        # Update users table
+        db.execute("UPDATE users SET cash = cash - :total_cost WHERE id = :user_id",
+                   total_cost=total_cost, user_id=session["user_id"])
 
-        if not information:
-            return apology("Enter a valid symbol", 403)
+        # Add the purchase to the history table
+        db.execute("INSERT INTO transactions (user_id, symbol, shares, price) VALUES (:user_id, :symbol, :shares, :price)",
+                   user_id=session["user_id"], symbol=symbol, shares=shares, price=price)
 
-        stock_price = information.price
-        user = session["user_id"]
-
-        db.execute("INSERT INTO transactions (user, symbol, shares, price) VALUES (?, ?, ?, ?)", user, symbol, shares, stock_price)
-
-        return render_template("quoted.html", information=information)
+        flash(f"Bought {shares} shares of {symbol} for {usd(total_cost)}!")
+        return redirect("/")
+    else:
+        return render_template("buy.html")
 
 
 
@@ -78,15 +81,7 @@ def buy():
 @login_required
 def history():
     """Show history of transactions"""
-
-    user_id = session["user_id"]
-    transactions = db.execute(
-        "SELECT symbol, shares, price, timestamp FROM transactions WHERE user = ? ORDER BY timestamp DESC",
-        user_id,
-    )
-
-    return render_template("history.html", transactions=transactions)
-
+    return apology("TODO")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -145,55 +140,54 @@ def quote():
 
     if request.method == "POST":
         symbol = request.form.get("symbol")
-        if not symbol:
-            return apology("Please input a symbol", 403)
-
-        information = lookup(symbol)
-
-        if not information:
-            return apology("Enter a valid symbol", 403)
-        return render_template("quoted.html", information=information)
-
-    elif request.method == "GET":
+        quote = lookup(symbol)
+        if not quote:
+            return apology("Invalid symbol", 400)
+        return render_template("quote.html", quote=quote)
+    else:
         return render_template("quote.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """Register user"""
 
-    session.clear
+    session.clear()
 
     if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
-        confirmed_password = request.form.get("confirmation")
 
+        username = request.form.get("username")
         if not username:
-            return apology("must provide username", 400)
+            return apology("Must provide username", 400)
+
+        password = request.form.get("password")
+        confirmation = request.form.get("confirmation")
 
         if not password:
-            return apology("must provide password", 400)
+            return apology("Must provide password", 400)
+        if not confirmation:
+            return apology("Must provide confirmation", 400)
+        if password != confirmation:
+            return apology("Passwords do not match", 400)
 
-        if not confirmed_password:
-            return apology("must provide confirmation of password", 400)
+        rows = db.execute("SELECT * FROM users WHERE username = ?", username)
+        if rows:
+            return apology("Username exists", 400)
 
-        if confirmed_password != password:
-            return apology("Passwords do not match")
-
-        hash = generate_password_hash(password)
-
-        # Query database for username
         try:
-
-            db.execute(
-                "INSERT INTO users (username, hash) VALUES (?, ?)", username, hash
+            user_id = db.execute(
+                "INSERT INTO users (username, hash) VALUES(?, ?)",
+                username,
+                generate_password_hash(password),
             )
+        except:
+            return apology("Registration failed", 500)
 
-        except ValueError:
-            return apology("Username is already taken", 400)
+        session["user_id"] = user_id
 
-    return render_template("register.html")
+        return redirect("/")
+
+    else:
+        return render_template("register.html")
 
 
 @app.route("/sell", methods=["GET", "POST"])

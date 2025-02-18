@@ -14,7 +14,7 @@
     </form>
 
     {% if quote %}
-        <h3>{{ quote['name'] }} ({{ quote['sumbol'] }})</h3>
-        <p> {{ quote['price']usd }} </p>
-    {% end if %}
+        <h3>{{ quote['name'] }} ({{ quote['symbol'] }})</h3>
+        <p>Price: {{ quote['price']['usd'] }}</p>
+    {% endif %}
 {% endblock %}
