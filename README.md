@@ -13,11 +13,11 @@ CS50 is a course that covers fundamental computer science concepts and programmi
 ## Repository Structure
 ```
 CS50-2024/
-│── pset1/           # Problem Set 1: C programming basics
-│── pset2/           # Problem Set 2: Arrays and algorithms
-│── pset3/           # Problem Set 3: Memory and data structures
-│── pset4/           # Problem Set 4: Web programming
-│── final_project/   # Final course project
+│── C/                # C code from various problem sets 
+│── Flask/            # Flask projects from final week 
+│── Python/           # Similar to C code
+│── SQL/              # SQL assignment and challenge 
+│── Web/              # Javascript & HTML projects 
 │── README.md        # This file
 ```
 
